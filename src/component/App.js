@@ -25,10 +25,7 @@ export default class App extends Component {
     }
 
     addListWithContactForm = task => {
-        const contactToAdd = {
-            ...task,
-            id: shortId.generate(),
-        };
+
         const searchSameName = this.state.contacts.map(cont => cont.name).includes(task.name)
 
         if (searchSameName) {
@@ -36,6 +33,11 @@ export default class App extends Component {
         } else if (task.name.length === 0) {
             alert('Fields must be filled!')
         } else {
+            const contactToAdd = {
+                ...task,
+                id: shortId.generate(),
+            };
+
             this.setState(state => ({
                 contacts: [...state.contacts, contactToAdd],
             }));
